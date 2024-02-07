@@ -1,9 +1,11 @@
 /* OLED START */
 #ifdef OLED_ENABLE
-#include QMK_KEYBOARD_H
-#include <stdio.h>
-#include "quantum.h"
-#include "enums.h"
+#    include QMK_KEYBOARD_H
+#    include <stdio.h>
+#    include "quantum.h"
+#    include "enums.h"
+#    include "xomt.h"
+#    include "luna.h"
 
 static void print_status_narrow(void) {
     oled_set_cursor(0, 0);
@@ -71,18 +73,17 @@ static void print_status_narrow(void) {
     oled_set_cursor(0, 8);
     oled_write(" wpm", false);
 
-    /* KEYBOARD XOMT RENDER START */
-    # ifdef ADOPT_XOMT
+/* KEYBOARD XOMT RENDER START */
+#    ifdef ADOPT_XOMT
     render_xomt(0, 10);
-    # endif 
-    /* KEYBOARD XOMT RENDER ENDER */
+#    endif
+/* KEYBOARD XOMT RENDER ENDER */
 
-    /* KEYBOARD PET RENDER START */
-    # ifdef ADOPT_LUNA 
+/* KEYBOARD PET RENDER START */
+#    ifdef ADOPT_LUNA
     render_luna(0, 13);
-    # endif 
+#    endif
     /* KEYBOARD PET RENDER END */
-
 }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
@@ -90,12 +91,14 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 
 bool oled_task_user(void) {
-    /* KEYBOARD PET VARIABLES START */
-    # ifdef ADOPT_LUNA 
+    /* KEYBOARD PET RENDER START */
+#    ifdef ADOPT_LUNA
+    /* status variables */
+
     current_wpm   = get_current_wpm();
     led_usb_state = host_keyboard_led_state();
-    /* KEYBOARD PET VARIABLES END */
-    # endif 
+#    endif
+    /* KEYBOARD PET RENDER END */
 
     print_status_narrow();
     return false;
@@ -103,4 +106,3 @@ bool oled_task_user(void) {
 
 #endif
 /* OLED END */
-

@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "quantum.h"
 #include "enums.h" 
+#include "luna.h"
 
 /* layers */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {

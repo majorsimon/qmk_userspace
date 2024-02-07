@@ -3,6 +3,7 @@
 #include QMK_KEYBOARD_H
 #include <stdio.h>
 #include "quantum.h"
+#include "luna.h"
 
 /* settings */
 #    define MIN_WALK_SPEED 10
@@ -12,22 +13,8 @@
 #    define ANIM_FRAME_DURATION 200 // how long each frame lasts in ms
 #    define ANIM_SIZE 96            // number of bytes in array. If you change sprites, minimize for adequate firmware size. max is 1024
 
-/* timers */
-uint32_t anim_timer = 0;
-
-/* current frame */
-uint8_t current_frame = 0;
-
-/* status variables */
-int   current_wpm = 0;
-led_t led_usb_state;
-
-bool isSneaking = false;
-bool isJumping  = false;
-bool showedJump = true;
-
 /* logic */
-static void render_luna(int LUNA_X, int LUNA_Y) {
+void render_luna(int LUNA_X, int LUNA_Y) {
     /* Sit */
     static const char PROGMEM sit[2][ANIM_SIZE] = {/* 'sit1', 32x22px */
                                                    {

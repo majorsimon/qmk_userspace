@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "quantum.h"
 
-static void render_xomt(int XOMT_X, int XOMT_Y) {
+void render_xomt(int XOMT_X, int XOMT_Y) {
     static const char PROGMEM xomt[] = {
         0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     };

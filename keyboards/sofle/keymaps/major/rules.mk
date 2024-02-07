@@ -19,12 +19,9 @@ WPM_ENABLE = yes
 
 VIA_ENABLE = yes
 
-ADOPT_LUNA = yes
-ADOPT_XOMT = yes
-
 SRC += rgb_matrix.c 
 SRC += rgblight.c 
 SRC += encoder.c 
-SRC += luna.c
-SRC += xomt.c 
+LIB_SRC += luna.c
+LIB_SRC += xomt.c 
 SRC += oled.c 
